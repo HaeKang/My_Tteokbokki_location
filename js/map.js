@@ -1,6 +1,14 @@
 $(document).ready(function () {
 	
 	var location_now; // 현재위치
+	var circle = new naver.maps.Circle({
+			map: map,
+    		center: location_now,
+			radius: 0,
+			fillColor: 'crimson',
+			fillOpacity: 0
+		}); // 원그리기
+	
 	
 	// naver map
 	var mapOptions = {
@@ -20,6 +28,21 @@ $(document).ready(function () {
 	naver.maps.Event.addListener(map, 'click', function (e) {
 		marker.setPosition(e.latlng);
 		location_now = e.latlng;	// 현재 위치 변경
+		circle.setMap(null);	// 기존에 있는 원 삭제
+		
+	});
+	
+	
+	// find 버튼 누르면 원그리기
+	$("#btnfind").click(function(){
+		circle.setMap(null);	// 기존에 있는 원 삭제
+		circle = new naver.maps.Circle({
+			map: map,
+    		center: location_now,
+			radius: 300,
+			fillColor: 'crimson',
+			fillOpacity: 0.5
+		});
 	});
 
 
@@ -55,7 +78,7 @@ $(document).ready(function () {
 		infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>');
 		infowindow.open(map, center);
 	}
-
-
+	
+	
 
 });
