@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
 	var location_now; // 현재위치
+	var x_lat;
+	var y_lng;
+
+	$('#result_list').hide();
+
 	var circle = new naver.maps.Circle({
 		map: map,
 		center: location_now,
@@ -21,7 +26,7 @@ $(document).ready(function () {
 
 	// marker
 	var marker = new naver.maps.Marker({
-		position: new naver.maps.LatLng(37.3595704, 127.1053990),
+		position: new naver.maps.LatLng(37.4517123, 127.1303362),
 		map: map
 	});
 
@@ -33,9 +38,14 @@ $(document).ready(function () {
 		circle.setMap(null); // 기존에 있는 원 삭제
 	});
 
+	// 중복클릭 방지
+	var click = true;
 
 	// find 버튼 누르면 원그리기
 	$("#btnfind").click(function () {
+		x_lat = location_now.lat();
+		y_lng = location_now.lng();
+
 		circle.setMap(null); // 기존에 있는 원 삭제
 		circle = new naver.maps.Circle({ // 원그리기
 			map: map,
@@ -46,19 +56,35 @@ $(document).ready(function () {
 		});
 
 		//ajax로 mysql 연동 시작
-		var x_lat = location_now.lat();
-		var y_lng = location_now.lng();
-		
-        $.ajax({
-            url:'/list',
-            type:'POST',
-            data:{x_lat:x_lat,y_lng:y_lng},
-            success:function(data){
-                console.log("map.js " + data);
-            }
-        });
-		
+		$.ajax({
+			url: '/map_post',
+			dataType: 'json',
+			async: true,
+			type: 'POST',
+			contentType: 'application/json; charset=UTF-8',
+			data: JSON.stringify({
+				"x_lat": x_lat,
+				"y_lng": y_lng
+			}),
+			success: function (data) {
+				var real_data = JSON.stringify(data);
+				console.log(real_data);
 
+				// 데이터 넣기
+				$('#result_list').empty();
+				$('#result_list').show();
+
+				$('#result_list').append("<p> 내 위치 근처에 있는 떡볶이집 </p>");
+				
+				for ($i = 0; $i < data.length; $i++) {
+					$('#result_list').append("<p>떡볶이집 이름 : " + data[$i].name + "</p>");
+				}
+				
+			},
+			error: function (err) {
+				alert('실패');
+			}
+		});
 	});
 
 
