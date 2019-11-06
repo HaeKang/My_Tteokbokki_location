@@ -1,20 +1,11 @@
+<script>
 $(document).ready(function () {
 
 	var location_now; // 현재위치
 	var x_lat;
 	var y_lng;
 
-	var marker2 = []; // 가게들 마커
-	var store_names = [];
-	var infoWindows = [];
-	
-	var infowindow;
-	
-
-	$('#store_list').hide();
-	$('#store_text').hide();
-	$('#store_main').hide();
-
+	$('#result_list').hide();
 
 	var circle = new naver.maps.Circle({
 		map: map,
@@ -43,18 +34,6 @@ $(document).ready(function () {
 
 	// 클릭한 지점으로 marker 이동
 	naver.maps.Event.addListener(map, 'click', function (e) {
-		
-		
-		// 열려있는 info 닫기
-		if (infowindow != null) {
-			infowindow.close();
-		} 
-
-		// 가게들 마커 지우기
-		if (marker2 != null) {
-			delete_marker(marker2);
-		}
-
 		marker.setPosition(e.latlng);
 		location_now = e.latlng; // 현재 위치 변경
 		circle.setMap(null); // 기존에 있는 원 삭제
@@ -63,13 +42,11 @@ $(document).ready(function () {
 	// 중복클릭 방지
 	var click = true;
 
-
+	
 	// find 버튼 누르면 원그리기 + 근처 떡볶이집 나오기
 	$("#btnfind").click(function () {
 		x_lat = location_now.lat();
 		y_lng = location_now.lng();
-		marker2 = [];
-		store_names = [];
 
 		circle.setMap(null); // 기존에 있는 원 삭제
 		circle = new naver.maps.Circle({ // 원그리기
@@ -92,118 +69,33 @@ $(document).ready(function () {
 				"y_lng": y_lng
 			}),
 			success: function (data) {
-				store_list(data);
-			},
+				var real_data = JSON.stringify(data);
+				console.log(real_data);
 
+				// 데이터 넣기
+				$('#result_list').empty();
+				$('#result_list').show();
+
+				$('#result_list').append("<p> 내 위치 근처에 있는 떡볶이집 </p>");
+				
+				for ($i = 0; $i < data.length; $i++) {
+					$('#result_list').append("<p>떡볶이집 이름 : " + data[$i].name + "</p>");
+				}
+				
+			},
 			error: function (err) {
 
 			}
 		});
 	});
 
-
-	// 떡볶이 가게 표시 함수
-	function store_list(data) {
-		var real_data = JSON.stringify(data);
-		console.log(real_data);
-		
-		// 데이터 넣기
-		$('#store_text').empty();
-		$('#store_main').empty();
-
-		$('#store_main').show();
-
-		if (data.length > 0) {
-			$('#store_text').show();
-			$('#store_list').show();
-			$('#store_main').append('<h4> 총 ' + data.length + ' 개의 떡볶이 집을 찾았어요</h4>')
-
-			for ($i = 0; $i < data.length; $i++) {
-				var store_name = data[$i].name;
-				var store_x = data[$i].x_lat;
-				var store_y = data[$i].y_lng;
-
-				$('#store_text').append('<h3>' + store_name + '</h3>');
-				$('#store_text').append("<p>떡볶이집 이름 : " + store_name + "</p>");
-
-
-				// marker 추가
-				var marker_store = new naver.maps.Marker({
-					position: new naver.maps.LatLng(store_x, store_y),
-					map: map
-				});
-
-				infowindow = new naver.maps.InfoWindow({
-					content: '<div style="width:150px;text-align:center;padding:10px;">' + store_name + '</div>'
-				});
-				
-				marker2.push(marker_store);
-				store_names.push(store_name);
-				infoWindows.push(infowindow);
-			}
-			
-			for ( var j = 0; j < marker2.length; j++){
-				naver.maps.Event.addListener(marker2[j], 'click', getClickHandler(j));
-			}
-
-		} else {
-			$('#store_main').append('<h4> 떡볶이집을 찾지 못했어요 </h4>')
-		}
-
-	}
-	
-	// info 추가
-	naver.maps.Event.addListener(map,'idle',function(){
-		updateMarkersInfo(map, marker2, store_names);
-	});
-	
-	function updateMarkersInfo(map, marker2, store_names) {
-		var marker, postition, store_name;
-
-		for (var i = 0; i < marker2.length; i++) {
-			marker = marker2[i];
-			postition = marker.getPosition();
-			store_name = store_names[i];
-
-			infowindow = new naver.maps.InfoWindow({
-				content: '<div style="width:150px;text-align:center;padding:10px;">' + store_name + '</div>'
-			});
-
-			if (infowindow.getMap()) {
-				infowindow.close();
-			} else {
-				infowindow.open(map, postition);
-			}
-		}
-	}
-
-	function getClickHandler(seq) {
-		return function (e) {
-			var marker = marker2[seq];
-			infowindow = infoWindows[seq];
-
-			if (infowindow.getMap()) {
-				infowindow.close();
-			} else {
-				infowindow.open(map, marker);
-			}
-		}
-	}
 	
 
-
-	// 가게 마커 삭제 함수
-	function delete_marker(marker2) {
-		for (var i = 0; i < marker2.length; i++) {
-			marker2[i].setMap(null);
-		}
-	}
-
-
-	//주소 + 좌표값 얻기
+	// info창 & 주소 + 좌표값 얻기
 	var infoWindow = new naver.maps.InfoWindow({
 		anchorSkew: true
 	});
+
 
 	map.setCursor('pointer');
 
@@ -408,3 +300,5 @@ $(document).ready(function () {
 
 
 });
+
+</script>

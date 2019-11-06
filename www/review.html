@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
   <title>Imperial Boootstrap Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
-  <% include ./scriptMetaLink %>
 
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <link href="favicon.ico" rel="shortcut icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../public/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../public/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../public/lib/animate-css/animate.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../public/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="preloader"></div>
-
-  <!--==========================
-  Hero Section
-  ============================-->
-  <section id="hero">
-    <div class="hero-container">
-      <div class="wow fadeIn">
-        <div class="hero-logo">
-          <img class="" src="../public/img/logo.png" alt="Imperial">
-        </div>
-        
-        <div class="actions">
-          <a href="#about" class="btn-get-started">Get Strated</a>
-          <a href="#services" class="btn-services">Our Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!--==========================
   Header Section
   ============================-->
@@ -47,32 +40,28 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#hero">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li class="menu-active"><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
         </ul>
       </nav>
       <!-- #nav-menu-container -->
     </div>
   </header>
   <!-- #header -->
-
+  
+  
   <!--==========================
-  About Section
+  리뷰 Section
   ============================-->
-  <section id="about">
+  <section id="review">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
           <h3 class="section-title">About Us</h3>
           <div class="section-title-divider"></div>
           <p class="section-description">내가 지금 위치한 곳 주변에 있는 떡볶이 집들을 찾아주는 서비스</p>
-   			<div class="sns">
-               <a href="https://github.com/HaeKang" class="github"><i class="fa fa-github fa-2x"></i></a>
-                <a href="https://www.instagram.com/saming__/?hl=ko" class="instagram"><i class="fa fa-instagram fa-2x"></i></a>
-   			</div>
         </div>
         
       </div>
@@ -98,24 +87,30 @@
           </p>
         </div>
       </div>
+      
+      <div class="text-center">
+      	<button class = "review_btn">리뷰작성하기</button>
+      </div>
     </div>
   </section>
 
-  <!--==========================
-  Services Section
-  ============================-->
-	<% include ./map %>
-
   
-  <!--==========================
-  Contact Section
-  ============================-->
-  	<% include ./contact %>
+  
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+  <!-- Required JavaScript Libraries -->
+  <script src="../public/lib/jquery/jquery.min.js"></script>
+  <script src="../public/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../public/lib/superfish/hoverIntent.js"></script>
+  <script src="../public/lib/superfish/superfish.min.js"></script>
+  <script src="../public/lib/morphext/morphext.min.js"></script>
+  <script src="../public/lib/wow/wow.min.js"></script>
+  <script src="../public/lib/stickyjs/sticky.js"></script>
+  <script src="../public/lib/easing/easing.js"></script>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="../public/js/custom.js"></script>
+	
 </body>
 
 </html>
