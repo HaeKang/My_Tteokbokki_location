@@ -7,9 +7,9 @@ $(document).ready(function () {
 	var marker2 = []; // 가게들 마커
 	var store_names = [];
 	var infoWindows = [];
-	
+
 	var infowindow;
-	
+
 
 	$('#store_list').hide();
 	$('#store_text').hide();
@@ -43,12 +43,12 @@ $(document).ready(function () {
 
 	// 클릭한 지점으로 marker 이동
 	naver.maps.Event.addListener(map, 'click', function (e) {
-		
-		
+
+
 		// 열려있는 info 닫기
 		if (infowindow != null) {
 			infowindow.close();
-		} 
+		}
 
 		// 가게들 마커 지우기
 		if (marker2 != null) {
@@ -102,16 +102,18 @@ $(document).ready(function () {
 	});
 
 
+
 	// 떡볶이 가게 표시 함수
 	function store_list(data) {
 		var real_data = JSON.stringify(data);
 		console.log(real_data);
-		
+
 		// 데이터 넣기
 		$('#store_text').empty();
 		$('#store_main').empty();
 
 		$('#store_main').show();
+
 
 		if (data.length > 0) {
 			$('#store_text').show();
@@ -123,8 +125,8 @@ $(document).ready(function () {
 				var store_x = data[$i].x_lat;
 				var store_y = data[$i].y_lng;
 
-				$('#store_text').append('<h3>' + store_name + '</h3>');
-				$('#store_text').append("<p>떡볶이집 이름 : " + store_name + "</p>");
+				$('#store_text').append('<h3> <a href="javascript:test(' + "'" + store_name + "'" + ');">' + store_name + '</a></h3>');
+				$('#store_text').append("<p>떡볶이집 이름 : <text>" + store_name + "</text></p>");
 
 
 				// marker 추가
@@ -136,13 +138,13 @@ $(document).ready(function () {
 				infowindow = new naver.maps.InfoWindow({
 					content: '<div style="width:150px;text-align:center;padding:10px;">' + store_name + '</div>'
 				});
-				
+
 				marker2.push(marker_store);
 				store_names.push(store_name);
 				infoWindows.push(infowindow);
 			}
-			
-			for ( var j = 0; j < marker2.length; j++){
+
+			for (var j = 0; j < marker2.length; j++) {
 				naver.maps.Event.addListener(marker2[j], 'click', getClickHandler(j));
 			}
 
@@ -151,12 +153,14 @@ $(document).ready(function () {
 		}
 
 	}
-	
+
+
+
 	// info 추가
-	naver.maps.Event.addListener(map,'idle',function(){
+	naver.maps.Event.addListener(map, 'idle', function () {
 		updateMarkersInfo(map, marker2, store_names);
 	});
-	
+
 	function updateMarkersInfo(map, marker2, store_names) {
 		var marker, postition, store_name;
 
@@ -189,7 +193,7 @@ $(document).ready(function () {
 			}
 		}
 	}
-	
+
 
 
 	// 가게 마커 삭제 함수
