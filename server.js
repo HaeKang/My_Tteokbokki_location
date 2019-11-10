@@ -21,16 +21,42 @@ app.get('/', function (req, res) {
 app.use(express.static(path.join(__dirname, '/')));
 app.use(bodyParser());
 
+
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/www/index.html');
 });
 
+var name;
+var idx;
+
 // 리뷰글목록 가기
 app.get('/review', function (req, res) {
+	name = req.query.store_name; // store_name 받아오기
+	idx = req.query.store_idx;
 	res.sendFile(__dirname + '/www/review.html');
-	var name = req.query.store_name; // store_name 받아오기
-	console.log(name);
+
+	// 리뷰글 가져오기
+	app.post('/review_list', function (req, res) {
+		var sql = 'select nickname, review from review where name = ?';
+		connection.query(sql, [name], function (error, result) {
+			res.send(result);
+			console.log(result)
+		});
+	});
+
+	// 리뷰글 작성하기
+	app.post('/review_upload', function (req, res) {
+		var nickname = req.body.nickname;
+		var pw = req.body.pw;
+		var review = req.body.review;
+
+		var sql = 'insert into review(idx, name, nickname, pw, review) values(?,?,?,?,?)';
+		connection.query(sql, [idx, name, nickname, pw, review], function (error, result) {
+			res.sendFile(__dirname + '/www/index.html');
+		})
+	});
 });
+
 
 
 
@@ -42,12 +68,10 @@ app.post('/map_post', function (req, res) {
 	var y_lng = req.body.y_lng;
 
 	// 반경 500m
-	var sql = 'SELECT *,(6371*acos(cos(radians(?))*cos(radians(x_lat))*cos(radians(y_lng)-radians(?))+sin(radians(?))*sin(radians(x_lat)))) AS distance FROM test_table HAVING distance <= 0.5 ORDER BY distance LIMIT 0,300;'
+	var sql = 'SELECT *,(6371*acos(cos(radians(?))*cos(radians(x_lat))*cos(radians(y_lng)-radians(?))+sin(radians(?))*sin(radians(x_lat)))) AS distance FROM storelist HAVING distance <= 0.5 ORDER BY distance LIMIT 0,300;'
 	connection.query(sql, [x_lat, y_lng, x_lat], function (error, result) {
 		res.send(result);
 		console.log(result);
-		console.log("x_lat " + x_lat);
-		console.log("y_lng " + y_lng);
 	});
 });
 

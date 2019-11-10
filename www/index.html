@@ -153,6 +153,7 @@
 				<div class="col-md-8">
 					<form name="paging">
 						<input type="hidden" name="store_name">
+						<input type="hidden" name="store_idx">
 					</form>
 					<text id="store_text"></text>
 				</div>
@@ -163,9 +164,10 @@
 
 	<script>
 		// review가는 form 태그
-		function test(store_name) {
+		function test(store_name, store_idx) {
 			var f = document.paging;
 			f.store_name.value = store_name;
+			f.store_idx.value = store_idx;
 			f.action = "/review"
 			f.method = "get"
 			f.submit();

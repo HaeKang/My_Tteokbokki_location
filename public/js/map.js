@@ -121,12 +121,17 @@ $(document).ready(function () {
 			$('#store_main').append('<h4> 총 ' + data.length + ' 개의 떡볶이 집을 찾았어요</h4>')
 
 			for ($i = 0; $i < data.length; $i++) {
+				var store_idx = data[$i].idx;
 				var store_name = data[$i].name;
 				var store_x = data[$i].x_lat;
 				var store_y = data[$i].y_lng;
+				var store_phone = data[$i].phone;
+				var store_address = data[$i].address;
 
-				$('#store_text').append('<h3> <a href="javascript:test(' + "'" + store_name + "'" + ');">' + store_name + '</a></h3>');
-				$('#store_text').append("<p>떡볶이집 이름 : <text>" + store_name + "</text></p>");
+
+				$('#store_text').append('<h3> <a href="javascript:test(' + "'" + store_name + "','" + store_idx + "'" + ');">' + store_name + '</a></h3>');
+				$('#store_text').append("<p>위치 : <text>" + store_address + "</text></p>");
+				$('#store_text').append("<p>연락처 : <text>" + store_phone + "</text></p>");
 
 
 				// marker 추가
