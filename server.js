@@ -34,30 +34,81 @@ app.get('/review', function (req, res) {
 	name = req.query.store_name; // store_name 받아오기
 	idx = req.query.store_idx;
 	res.sendFile(__dirname + '/www/review.html');
+});
 
-	// 리뷰글 가져오기
-	app.post('/review_list', function (req, res) {
-		var sql = 'select nickname, review from review where name = ?';
-		connection.query(sql, [name], function (error, result) {
-			res.send(result);
-			console.log(result)
-		});
-	});
 
-	// 리뷰글 작성하기
-	app.post('/review_upload', function (req, res) {
-		var nickname = req.body.nickname;
-		var pw = req.body.pw;
-		var review = req.body.review;
-
-		var sql = 'insert into review(idx, name, nickname, pw, review) values(?,?,?,?,?)';
-		connection.query(sql, [idx, name, nickname, pw, review], function (error, result) {
-			res.sendFile(__dirname + '/www/index.html');
-		})
+// 리뷰글 가져오기
+app.post('/review_list', function (req, res) {
+	var sql = 'select nickname, review, review_idx from review where name = ?';
+	connection.query(sql, [name], function (error, result) {
+		res.send(result);
+		console.log(result)
 	});
 });
 
 
+// 리뷰글 작성하기
+app.post('/review_upload', function (req, res) {
+	var nickname = req.body.nickname;
+	var pw = req.body.pw;
+	var review = req.body.review;
+
+	var sql = 'insert into review(idx, name, nickname, pw, review) values(?,?,?,?,?)';
+	connection.query(sql, [idx, name, nickname, pw, review], function (error, result) {
+		//res.sendFile(__dirname + '/www/index.html');
+	})
+
+	/*
+	res.send({
+		"result": "성공"
+	});
+*/
+
+	var go_url = "http://127.0.0.1:8080/#services";
+	go_url = String(go_url);
+	console.log(go_url);
+	res.statusCode = 302;
+	res.setHeader('Location', go_url);
+	res.end();
+
+});
+
+// 리뷰글 삭제1
+app.post('/delete_review', function (req, res) {
+	var review_idx = req.body.review_idx;
+	var pw = req.body.pw;
+
+	var sql = 'select pw from review where review_idx = ?';
+	connection.query(sql, [review_idx], function (error, result) {
+		var real_pw = result[0].pw; // mysql에 저장된 비밀번호
+		if (pw == real_pw) {
+			console.log("같음");
+			res.send({
+				"result": "같음"
+			});
+		} else {
+			console.log("다름");
+			res.send({
+				"result": "다름"
+			});
+		}
+	});
+
+});
+
+
+// 리뷰글 삭제2
+app.post('/delete_review2', function (req, res) {
+	var review_idx = req.body.review_idx;
+
+	var sql = 'delete from review where review_idx = ?';
+	connection.query(sql, [review_idx], function (error, result) {
+		res.send({
+			"result": "삭제성공"
+		});
+	});
+
+});
 
 
 // mysql 떡볶이집 정보

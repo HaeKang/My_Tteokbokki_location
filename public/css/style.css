@@ -750,6 +750,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 	background: #25d8fc;
 }
 
+.delete_btn {
+	background: #03C4EB;
+	border: 0;
+	padding: 10px 24px;
+	color: #fff;
+	transition: 0.4s;
+}
+
 
 
 /* Get Started Section
