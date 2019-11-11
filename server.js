@@ -64,7 +64,7 @@ app.post('/review_upload', function (req, res) {
 	});
 */
 
-	var go_url = "http://127.0.0.1:8080/#services";
+	var go_url = "http://127.0.0.1:8080/review?store_name=" + encodeURIComponent(name) + "&store_idx=" + encodeURIComponent(idx);
 	go_url = String(go_url);
 	console.log(go_url);
 	res.statusCode = 302;

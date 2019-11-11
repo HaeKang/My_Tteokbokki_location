@@ -41,9 +41,9 @@ $('document').ready(function () {
 			var nickname = data[$i].nickname;
 			var review = data[$i].review;
 			var review_idx = data[$i].review_idx;
-			$('#test').append(nickname + "님이 작성한 한줄평입니다.");
+			$('#test').append("<text id='text-center'>" + nickname + "님이 작성한 한줄평입니다.");
 			$('#test').append('  ' + review);
-			$('#test').append('<button class = "delete_btn" id="delete' + review_idx + '"> 삭제 </button>')
+			$('#test').append('<button class = "delete_btn" id="delete' + review_idx + '"> 삭제 </button></text>')
 			$('#test').append('<br>')
 		}
 	}
@@ -57,7 +57,7 @@ $('document').ready(function () {
 		type: 'POST',
 		contentType: 'application/json; charset=UTF-8',
 		success: function (data) {
-			console.log(data);
+			window.location.reload();
 		},
 		error: function (err) {
 

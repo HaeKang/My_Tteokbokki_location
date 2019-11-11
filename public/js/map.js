@@ -70,6 +70,7 @@ $(document).ready(function () {
 		y_lng = location_now.lng();
 		marker2 = [];
 		store_names = [];
+		infoWindows = [];
 
 		circle.setMap(null); // 기존에 있는 원 삭제
 		circle = new naver.maps.Circle({ // 원그리기
@@ -105,6 +106,7 @@ $(document).ready(function () {
 
 	// 떡볶이 가게 표시 함수
 	function store_list(data) {
+
 		var real_data = JSON.stringify(data);
 		console.log(real_data);
 
@@ -130,8 +132,8 @@ $(document).ready(function () {
 
 
 				$('#store_text').append('<h3> <a href="javascript:test(' + "'" + store_name + "','" + store_idx + "'" + ');">' + store_name + '</a></h3>');
-				$('#store_text').append("<p>위치 : <text>" + store_address + "</text></p>");
-				$('#store_text').append("<p>연락처 : <text>" + store_phone + "</text></p>");
+				$('#store_text').append("<text>위치 : <text>" + store_address + "</text></text><br>");
+				$('#store_text').append("<text>연락처 : <text>" + store_phone + "</text></text><br><br><br>");
 
 
 				// marker 추가
