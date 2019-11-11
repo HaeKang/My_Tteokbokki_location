@@ -115,12 +115,11 @@ $(document).ready(function () {
 		$('#store_main').empty();
 
 		$('#store_main').show();
-
+		$('#store_text').show();
+		$('#store_list').show();
 
 		if (data.length > 0) {
-			$('#store_text').show();
-			$('#store_list').show();
-			$('#store_main').append('<h4> 총 ' + data.length + ' 개의 떡볶이 집을 찾았어요</h4>')
+			$('#store_main').append('<h4> 총 ' + data.length + '개의 떡볶이 집을 찾았어요</h4>')
 
 			for ($i = 0; $i < data.length; $i++) {
 				var store_idx = data[$i].idx;
@@ -157,6 +156,7 @@ $(document).ready(function () {
 
 		} else {
 			$('#store_main').append('<h4> 떡볶이집을 찾지 못했어요 </h4>')
+			$('#store_text').append("<text> 지도에서 다른 곳을 클릭하여 다른 위치에서 찾아보세요 </text>");
 		}
 
 	}
@@ -278,7 +278,6 @@ $(document).ready(function () {
 			}
 
 			marker.setPosition(point);
-			alert(point);
 			location_now = point; // 현재 위치 변경
 			circle.setMap(null); // 기존에 있는 원 삭제
 			map.setCenter(point);

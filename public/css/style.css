@@ -10,18 +10,18 @@
 body {
 	background: #fff;
 	color: #666666;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Nanum Gothic", sans-serif;
 }
 
 a {
-	color: #03C4EB;
+	color: #ff4952;
 	transition: 0.5s;
 }
 
 a:hover,
 a:active,
 a:focus {
-	color: #03c5ec;
+	color: #ff8288;
 	outline: none;
 	text-decoration: none;
 }
@@ -82,7 +82,7 @@ h6 {
 }
 
 .back-to-top:hover {
-	background: #03C4EB;
+	background: #ff4952;
 	color: #fff;
 }
 
@@ -138,6 +138,7 @@ h6 {
 #hero h2 {
 	color: #999;
 	margin-bottom: 50px;
+	font-family: 'Yeon Sung', cursive;
 }
 
 @media (max-width: 768px) {
@@ -170,8 +171,8 @@ h6 {
 }
 
 #hero .btn-get-started {
-	background: #03C4EB;
-	border: 2px solid #03C4EB;
+	background: #ff4952;
+	border: 2px solid #ff4952;
 	color: #fff;
 }
 
@@ -187,8 +188,8 @@ h6 {
 }
 
 #hero .btn-services:hover {
-	background: #03C4EB;
-	border: 2px solid #03C4EB;
+	background: #ff4952;
+	border: 2px solid #ff4952;
 }
 
 /*--------------------------------------------------------------
@@ -337,7 +338,7 @@ h6 {
 .nav-menu a:hover,
 .nav-menu li:hover > a,
 .nav-menu .menu-active > a {
-	color: #03C4EB;
+	color: #ff4952;
 }
 
 .nav-menu ul {
@@ -445,11 +446,11 @@ h6 {
 }
 
 #mobile-nav ul .menu-has-children i.fa-chevron-up {
-	color: #03C4EB;
+	color: #ff4952;
 }
 
 #mobile-nav ul .menu-item-active {
-	color: #03C4EB;
+	color: #ff4952;
 }
 
 #mobile-body-overly {
@@ -505,7 +506,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .section-title-divider {
 	width: 50px;
 	height: 3px;
-	background: #03C4EB;
+	background: #ff4952;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
@@ -575,11 +576,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #services .service-icon {
 	float: left;
-	background: #03C4EB;
+	background: #ff4952;
 	padding: 16px;
 	border-radius: 50%;
 	transition: 0.5s;
-	border: 1px solid #03C4EB;
+	border: 1px solid #ff4952;
 }
 
 #services .service-icon i {
@@ -592,7 +593,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #services .service-item:hover .service-icon i {
-	color: #03C4EB;
+	color: #ff4952;
 }
 
 #services .service-title {
@@ -612,42 +613,98 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #services button[type="find"] {
-	background: #03C4EB;
+	background: #ff4952;
 	border: 0;
 	padding: 10px 24px;
 	color: #fff;
 	transition: 0.4s;
 }
 
+#services button[type="find"]:hover {
+	background: #ff8288;
+	border: 2px solid #ff8288;
+	border: 0;
+	padding: 10px 24px;
+	color: #fff;
+	transition: 0.4s;
+}
+
+
 #services #store_list {
 	background: rgba(0, 0, 0, 0.1);
 	padding: 20px 0;
 }
 
-#services .subscribe-btn {
-	font-family: "Raleway", sans-serif;
-	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 16px;
-	letter-spacing: 1px;
-	display: inline-block;
-	padding: 8px 20px;
-	border-radius: 2px;
-	transition: 0.5s;
-	margin: 10px;
-	border: 2px solid #fff;
-	color: #fff;
-}
-
-#services .subscribe-btn:hover {
-	background: #03C4EB;
-	border: 2px solid #03C4EB;
-}
-
-#services h3 {
+#services h3,
+h2 {
 	color: #111;
 }
 
+#services h4 {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+#service text {
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+/* Portfolio Section
+--------------------------------*/
+#portfolio {
+	background: #fff;
+	padding: 80px 0;
+}
+
+#portfolio .portfolio-item {
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+	height: 260px;
+	width: 100%;
+	display: table;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+#portfolio .portfolio-item .details {
+	height: 260px;
+	background: #fff;
+	display: table-cell;
+	vertical-align: middle;
+	opacity: 0;
+	transition: 0.3s;
+	text-align: center;
+}
+
+#portfolio .portfolio-item .details h4 {
+	font-size: 16px;
+	transition: transform 0.3s, opacity 0.3s;
+	transform: translate3d(0, -15px, 0);
+	font-weight: 700;
+	color: #333333;
+	font-family: "Nanum Gothic", sans-serif;
+}
+
+#portfolio .portfolio-item .details span {
+	display: block;
+	color: #666666;
+	font-size: 13px;
+	transition: transform 0.3s, opacity 0.3s;
+	transform: translate3d(0, 15px, 0);
+}
+
+#portfolio .portfolio-item:hover .details {
+	opacity: 0.8;
+}
+
+#portfolio .portfolio-item:hover .details h4 {
+	transform: translate3d(0, 0, 0);
+}
+
+#portfolio .portfolio-item:hover .details span {
+	transform: translate3d(0, 0, 0);
+}
 
 /* Contact Section
 --------------------------------*/
@@ -662,7 +719,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #contact .info i {
 	font-size: 32px;
-	color: #03C4EB;
+	color: #ff4952;
 	float: left;
 }
 
@@ -672,8 +729,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form #sendmessage {
-	color: #03C4EB;
-	border: 1px solid #03C4EB;
+	color: #ff4952;
+	border: 1px solid #ff4952;
 	display: none;
 	text-align: center;
 	padding: 15px;
@@ -712,7 +769,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form button[type="submit"] {
-	background: #03C4EB;
+	background: #ff4952;
 	border: 0;
 	padding: 10px 24px;
 	color: #fff;
@@ -720,7 +777,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #contact .form button[type="submit"]:hover {
-	background: #25d8fc;
+	background: #ff8288;
 }
 
 
@@ -739,7 +796,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #review_write .form button[type="submit"] {
-	background: #03C4EB;
+	background: #ff4952;
 	border: 0;
 	padding: 10px 24px;
 	color: #fff;
@@ -747,11 +804,19 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #review_write .form button[type="submit"]:hover {
-	background: #25d8fc;
+	background: #ff8288;
 }
 
 .delete_btn {
-	background: #03C4EB;
+	background: #ff4952;
+	border: 0;
+	padding: 10px 24px;
+	color: #fff;
+	transition: 0.4s;
+}
+
+.delete_btn:hover {
+	background: #ff8288;
 	border: 0;
 	padding: 10px 24px;
 	color: #fff;
@@ -765,26 +830,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 #review {
 	background: #fff;
 	padding: 80px 0;
+	font-family: "Nanum Gothic", sans-serif;
 }
 
-#review .about-img {
-	overflow: hidden;
-}
-
-#review .about-img img {
-	max-width: 100%;
-}
-
-@media (max-width: 768px) {
-	#review .about-img {
-		height: auto;
-	}
-
-	#review .about-img img {
-		margin-left: 0;
-		padding-bottom: 30px;
-	}
-}
 
 #review .about-content {
 	background: #fff;
@@ -806,9 +854,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #review .review_btn {
-	background: #03C4EB;
+	background: #ff8288;
 	border: 0;
-	padding: 10px 24px;
+	padding: 10px 10px;
 	color: #fff;
 	transition: 0.4s;
 }
