@@ -52,7 +52,7 @@ h6 {
 	width: 100%;
 	height: 100%;
 	overflow: visible;
-	background: #fff url("../img/preloader.svg") no-repeat center center;
+	background: #fff url("../img/91.svg") no-repeat center center;
 }
 
 /* Back to top button */
@@ -562,6 +562,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 	word-spacing: 20px;
 }
 
+#about #primary_text {
+	color: #ff4952;
+}
+
 /* Services Section
 --------------------------------*/
 #services {
@@ -648,6 +652,11 @@ h2 {
 	font-family: "Nanum Gothic", sans-serif;
 }
 
+#services #store_name {
+	font-family: 'Yeon Sung', cursive;
+}
+
+
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
@@ -665,6 +674,7 @@ h2 {
 	display: table;
 	overflow: hidden;
 	margin-bottom: 30px;
+	text-align: center;
 }
 
 #portfolio .portfolio-item .details {
@@ -784,9 +794,14 @@ h2 {
 
 /* review */
 
+
+
 #review_write {
-	background: #f7f7f7;
+	background-color: #f7f7f7;
+	height: 100%;
+	position: absolute;
 	padding: 80px 0;
+	width: 100%;
 }
 
 #review_write .form input,
@@ -807,32 +822,33 @@ h2 {
 	background: #ff8288;
 }
 
-.delete_btn {
-	background: #ff4952;
-	border: 0;
+#review .delete_btn {
+	background: none;
+	color: #666666;
+	font-weight: bold;
+	border: none;
 	padding: 10px 24px;
-	color: #fff;
 	transition: 0.4s;
 }
 
-.delete_btn:hover {
-	background: #ff8288;
-	border: 0;
+#review .delete_btn:hover {
+	background: none;
+	color: #ff4952;
+	border: none;
 	padding: 10px 24px;
-	color: #fff;
+
 	transition: 0.4s;
 }
 
+#review table {
+	border-spacing: 5px 10px;
+}
 
-
-/* Get Started Section
---------------------------------*/
 #review {
 	background: #fff;
 	padding: 80px 0;
 	font-family: "Nanum Gothic", sans-serif;
 }
-
 
 #review .about-content {
 	background: #fff;

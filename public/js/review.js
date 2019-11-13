@@ -36,34 +36,15 @@ $('document').ready(function () {
 
 	// 리뷰글 불러오기
 	function review(data) {
-		$("#test").empty();
+		$('#table_body').empty();
 		for ($i = 0; $i < data.length; $i++) {
 			var nickname = data[$i].nickname;
 			var review = data[$i].review;
 			var review_idx = data[$i].review_idx;
-			$('#test').append("<text id='text-center'>" + nickname + "님이 작성한 한줄평입니다.");
-			$('#test').append('  ' + review);
-			$('#test').append('<button class = "delete_btn" id="delete' + review_idx + '"> 삭제 </button></text>')
-			$('#test').append('<br>')
+			$('#table_body').append('<tr><td>' + nickname + '</td><td>' + review + '</td><td><text class = "delete_btn" id="delete' + review_idx + '"> 삭제 </text></td></tr>')
 		}
 	}
 
-
-	/* 리뷰글 작성
-	$.ajax({
-		url: '/review_upload',
-		dataType: 'json',
-		async: true,
-		type: 'POST',
-		contentType: 'application/json; charset=UTF-8',
-		success: function (data) {
-			window.location.reload();
-		},
-		error: function (err) {
-
-		}
-	});
-*/
 
 	// 삭제 버튼 누르면 팝업창뜨고 비번입력
 	$(document).on('click', '.delete_btn', function () {

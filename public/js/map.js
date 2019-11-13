@@ -130,7 +130,7 @@ $(document).ready(function () {
 				var store_address = data[$i].address;
 
 
-				$('#store_text').append('<h3> <a href="javascript:test(' + "'" + store_name + "','" + store_idx + "'" + ');">' + store_name + '</a></h3>');
+				$('#store_text').append('<h2 id="store_name"> <a href="javascript:test(' + "'" + store_name + "','" + store_idx + "'" + ');">' + store_name + '</a></h2>');
 				$('#store_text').append("<text>위치 : <text>" + store_address + "</text></text><br>");
 				$('#store_text').append("<text>연락처 : <text>" + store_phone + "</text></text><br><br><br>");
 

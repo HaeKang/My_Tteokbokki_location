@@ -55,14 +55,8 @@ app.post('/review_upload', function (req, res) {
 
 	var sql = 'insert into review(idx, name, nickname, pw, review) values(?,?,?,?,?)';
 	connection.query(sql, [idx, name, nickname, pw, review], function (error, result) {
-		//res.sendFile(__dirname + '/www/index.html');
-	})
 
-	/*
-	res.send({
-		"result": "성공"
-	});
-*/
+	})
 
 	var go_url = "http://127.0.0.1:8080/review?store_name=" + encodeURIComponent(name) + "&store_idx=" + encodeURIComponent(idx);
 	go_url = String(go_url);

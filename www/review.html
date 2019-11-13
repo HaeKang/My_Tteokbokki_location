@@ -71,18 +71,47 @@
 		</div>
 
 		<!-- 리뷰글 보이는 위치 -->
-		<div class="container about-container wow fadeInUp">
-			<div class="row">
-				<div class="col-md-6 about-content">
-					<p id="test"> 테스트 3 ㅎㅎ</p>
-				</div>
-			</div>
+		<div class="container wow fadeInUp">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>닉네임</th>
+						<th>한줄평</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="table_body">
+
+				</tbody>
+			</table>
 		</div>
+
 	</section>
 
 	<br>
 	<br>
 	<!-- 리뷰글 작성 위치 -->
+	<script>
+		// form null 체크
+		function check() {
+			if (fr.nickname.value == "") {
+				alert("닉네임을 입력해주세요");
+				fr.nickname.focus();
+				return false;
+			} else if (fr.pw.value == "") {
+				alert("비밀번호를 입력해주세요");
+				fr.pw.focus();
+				return false;
+			} else if (fr.review.value == "") {
+				alert("한줄평을 적어주세요");
+				fr.review.focus();
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+	</script>
 	<section id="review_write">
 		<div class="row">
 			<div class="col-md-12">
@@ -91,27 +120,28 @@
 				<p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
 			</div>
 		</div>
-		<div class="col">
-			<div class="col-md-6 col-md-push-3">
-				<div class="form">
-					<form action="/review_upload" method="post" role="form" class="contactForm">
-						<div class="form-group">
-							<input type="text" class="form-control" name="nickname" data-rule="required" id="nickname" placeholder="닉네임" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호" data-rule="required" data-msg="Please enter at least 8 chars of subject" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<textarea class="form-control" name="review" rows="5" data-rule="minlen:4" data-msg="Please write something for us" placeholder="한줄평"></textarea>
-						</div>
-						<div class="text-center"><button type="submit">작성</button></div>
-						<br>
-					</form>
+		<div class="container">
+			<div class="col">
+				<div class="col-md-6 col-md-push-3">
+					<div class="form">
+						<form action="/review_upload" method="post" class="contactForm" onsubmit="return check()" name="fr">
+							<div class="form-group">
+								<input type="text" class="form-control" name="nickname" data-rule="required" id="nickname" placeholder="닉네임" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호" data-rule="required" data-msg="Please enter at least 8 chars of subject" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" name="review" rows="5" data-rule="minlen:4" data-msg="Please write something for us" placeholder="한줄평"></textarea>
+							</div>
+							<div class="text-center"><button type="submit">작성</button></div>
+							<br>
+						</form>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</section>
 
